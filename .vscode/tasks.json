@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "build",
+			"command": "source ./.vscode/build.sh",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
