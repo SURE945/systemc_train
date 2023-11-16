@@ -1,5 +1,5 @@
 #include "systemc"
-#include "01_init_test/top.h"
+#include "02_axi/top.h"
 
 using namespace std;
 
