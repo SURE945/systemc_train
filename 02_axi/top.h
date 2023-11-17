@@ -1,5 +1,6 @@
 #include "systemc"
 #include "master.h"
+#include "slave.h"
 
 using namespace sc_core;
 using namespace sc_dt;
@@ -10,8 +11,10 @@ class Top : public sc_module {
     SC_HAS_PROCESS(Top);
     Top(sc_module_name name)
     : sc_module(name)
-    , master("Master") {
+    , master("Master")
+    , slave("Slave") {
         my_trace_file = sc_create_vcd_trace_file("Wave");
+        master.init_skt.bind(slave.tgt_skt);
     }
 
     ~Top() {
@@ -24,5 +27,6 @@ class Top : public sc_module {
     }
 
     Master master;
+    Slave slave;
     sc_trace_file* my_trace_file;
 };
