@@ -1,5 +1,5 @@
 #include "systemc"
-#include "03_b_transport/top.h"
+#include "04_apb2/top.h"
 
 using namespace std;
 
