@@ -5,3 +5,4 @@ train operation of systemc
 3.  b_transport
 4.  apb2, send 3 data sequently
 5.  apb3, send 3 data sequently
+6.  dmi
