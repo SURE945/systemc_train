@@ -6,3 +6,4 @@ train operation of systemc
 4.  apb2, send 3 data sequently
 5.  apb3, send 3 data sequently
 6.  dmi
+7.  dbg interface
