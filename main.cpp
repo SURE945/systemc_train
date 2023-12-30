@@ -1,5 +1,5 @@
 #include "systemc"
-#include "07_dbg/top.h"
+#include "08_extension/top.h"
 
 using namespace std;
 

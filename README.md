@@ -7,3 +7,4 @@ train operation of systemc
 5.  apb3, send 3 data sequently
 6.  dmi
 7.  dbg interface
+8.  add ignorable extension in generic_payload, take AWCACHE or ARCACHE in AXI as example
