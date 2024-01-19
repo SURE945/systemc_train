@@ -1,10 +1,10 @@
 #include "systemc"
-#include "08_extension/top.h"
+#include "09_break_quantum/top.h"
 
 using namespace std;
 
 int sc_main(int argc, char* argv[]) {
     Top top("top");
-    sc_start(200, SC_NS);
+    sc_start();
     return 0;
 }
