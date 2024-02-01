@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 project(main)
 set(CMAKE_BUILD_TYPE DEBUG)
+
+set(CMAKE_CXX_STANDARD 11)
 
 include(CTest)
 enable_testing()
