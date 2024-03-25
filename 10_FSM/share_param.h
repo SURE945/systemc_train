@@ -3,6 +3,7 @@
 
 #define MEM_LEN 0x1000
 
+// event
 enum class Event
 {
     CLREX,

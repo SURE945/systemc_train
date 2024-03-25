@@ -26,12 +26,11 @@ class Memory : public sc_module
         if (trans.get_command() == TLM_WRITE_COMMAND) {
             delay += clk_period;
             int len = trans.get_data_length();
-            uint8_t data[len];
-            memcpy(data, trans.get_data_ptr(), len);
             uint32_t addr = trans.get_address();
+            uint8_t* data = trans.get_data_ptr();
+            memcpy(mem + addr, data, len);
             uint32_t* dataptr32 = reinterpret_cast<uint32_t*>(data);
             cout << "store 0x" << hex << *(dataptr32) << " in 0x" << hex << addr << endl;
-            mem[addr] = *(dataptr32);
             trans.set_response_status(TLM_OK_RESPONSE);
         } else if (trans.get_command() == TLM_READ_COMMAND) {
             delay += clk_period;
@@ -39,7 +38,7 @@ class Memory : public sc_module
             uint8_t data[4];
             memcpy(data, (mem + addr), 4);
             trans.set_data_ptr(data);
-            cout << "load 0x" << hex << mem[addr] << " in 0x" << hex << addr << endl;
+            cout << "load 0x" << hex << *(uint32_t*)(data) << " in 0x" << hex << addr << endl;
             trans.set_response_status(TLM_OK_RESPONSE);
         }
         

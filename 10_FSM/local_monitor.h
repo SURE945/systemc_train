@@ -52,67 +52,85 @@ class Local_monitor : public sc_module
         default:
             break;
         }
+        cout << "=================================" << endl;
     }
 
     void Clrex(tlm_generic_payload &trans) {
         if (state == State::EXCLUSIVE_ACCESS) {
+            // action
             tag = 0;
-            state = State::OPEN_ACCESS;
-            cout << "No effect" << endl;
-            cout << "EXCLUSIVE_ACCESS --> OPEN_ACCESS" << endl;
-        } else {
-            tag = 0;
-            state = State::OPEN_ACCESS;
             cout << "Clears tagged address" << endl;
+            cout << "EXCLUSIVE_ACCESS --> OPEN_ACCESS" << endl;
+            // transition
+            state = State::OPEN_ACCESS;
+        } else {
+            // action
+            tag = 0;
+            cout << "No effect" << endl;
             cout << "OPEN_ACCESS --> OPEN_ACCESS" << endl;
+            // transition
+            state = State::OPEN_ACCESS;
         }
         trans.set_response_status(TLM_OK_RESPONSE);
     }
 
     void LoadExcl(tlm_generic_payload &trans, sc_time &delay) {
         if (state == State::OPEN_ACCESS) {
+            // action
             tag = trans.get_address();
-            state = State::EXCLUSIVE_ACCESS;
+            this->init_skt->b_transport(trans, delay);
             cout << "Loads value from memory, tags address 0x" << hex << tag << endl;
             cout << "OPEN_ACCESS --> EXCLUSIVE_ACCESS" << endl;
-        } else {
-            tag = trans.get_address();
+            // transition
             state = State::EXCLUSIVE_ACCESS;
+        } else {
+            // action
+            tag = trans.get_address();
+            this->init_skt->b_transport(trans, delay);
             cout << "Loads value from memory, changes tag to address to 0x" << hex << tag << endl;
             cout << "EXCLUSIVE_ACCESS --> EXCLUSIVE_ACCESS" << endl;
+            // transition
+            state = State::EXCLUSIVE_ACCESS;
         }
-        this->init_skt->b_transport(trans, delay);
     }
 
     void StoreExcl(tlm_generic_payload &trans, sc_time &delay) {
         if (state == State::OPEN_ACCESS) {
+            // action
             trans.set_response_status(tlm::TLM_GENERIC_ERROR_RESPONSE);
-            state = State::OPEN_ACCESS;
             cout << "Does not update memory, returns status 1" << endl;
             cout << "OPEN_ACCESS --> OPEN_ACCESS" << endl;
+            // transition
+            state = State::OPEN_ACCESS;
         } else {
+            // action
             if (tag == trans.get_address()) {
                 this->init_skt->b_transport(trans, delay);
             } else {
                 trans.set_response_status(tlm::TLM_GENERIC_ERROR_RESPONSE);
             }
-            state = State::OPEN_ACCESS;
             cout << "Updates memory, returns status 0" << endl;
             cout << "EXCLUSIVE_ACCESS --> OPEN_ACCESS" << endl;
+            // transition
+            state = State::OPEN_ACCESS;
         }
     }
 
     void Store(tlm_generic_payload &trans, sc_time &delay) {
         if (state == State::OPEN_ACCESS) {
+            // action
             this->init_skt->b_transport(trans, delay);
-            state = State::OPEN_ACCESS;
             cout << "Updates memory, no effect on monitor." << endl;
             cout << "OPEN_ACCESS --> OPEN_ACCESS" << endl;
+            // transition
+            state = State::OPEN_ACCESS;
         } else {
+            // action
             this->init_skt->b_transport(trans, delay);
-            state = State::EXCLUSIVE_ACCESS;
             cout << "Updates memory, no effect on monitor." << endl;
             cout << "EXCLUSIVE_ACCESS --> EXCLUSIVE_ACCESS" << endl;
+            // transition
+            state = State::EXCLUSIVE_ACCESS;
         }
     }
 
