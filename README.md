@@ -32,3 +32,6 @@ train usage of systemc tlm2
       |
       V
 ```
+10. add ignorable extension in gp, implement ARM-v7M local monitor, aim to record FSM.
+    the most important 4 element for FSM is **state**, **event**, **action** and **transition**.
+    reference doc is ARMv7-M Arichitecture Reference Manual PA3-72.
