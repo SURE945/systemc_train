@@ -29,7 +29,6 @@ class Producer : public sc_module
     void thread_main() {
         int i = 0;
         while (i < 10) {
-            wait(0, SC_NS);
             if (!full.read()) {
                 write32(0x0, i + 1, m_qk.get_local_time());
                 i++;

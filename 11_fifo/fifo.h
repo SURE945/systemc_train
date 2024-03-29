@@ -43,12 +43,12 @@ class Fifo : public sc_module
     }
 
     void method_main() {
-        if (/*(in + 1) % FIFO_DEPTH == out*/count == (FIFO_DEPTH -1)) {
+        if ((in + 1) % FIFO_DEPTH == out/*count == (FIFO_DEPTH -1)*/) {
             full.write(true);
         } else {
             full.write(false);
         }
-        if (/*in == out*/count == 0) {
+        if (in == out/*count == 0*/) {
             not_empty.write(false);
         } else {
             not_empty.write(true);
