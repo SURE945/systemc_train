@@ -1,3 +1,10 @@
+<style>
+table
+{
+    margin: auto;
+}
+</style>
+
 # systemc_train
 train usage of systemc tlm2
 1.  test systemc lib work
@@ -35,3 +42,18 @@ train usage of systemc tlm2
 10. add ignorable extension in gp, implement ARM-v7M local monitor, aim to record FSM.
     the most important 4 element for FSM is **state**, **event**, **action** and **transition**.
     reference doc is ARMv7-M Arichitecture Reference Manual PA3-72.
+
+11. implement a fifo model, the idea comes from lecture Operating System, this fifo model is like a monitor,
+
+|Type|OS|FIFO model|
+|--|--|--|
+|var|in|uint32_t in|
+||out|uint32_t out|
+||count|uint32_t count|
+|buffer|arry[0, ..., n-1]|uint32_t buffer[3]|
+|condition|notfull|full.read()|
+||notempty|not_empty.read()|
+|wait|notfull.wait|full.write(true)|
+||notempty.wait|not_empty.write(false)|
+|signal|notfull.signal|full.write(false)|
+||notempty.signal|not_empty.write(true)|

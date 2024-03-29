@@ -28,7 +28,8 @@ class Fifo : public sc_module
     , rd_delay(1, SC_NS)
     , buffer(NULL)
     , in(0)
-    , out(0) {
+    , out(0)
+    , count(0) {
         buffer = new uint32_t[FIFO_DEPTH];
         for (int i = 0; i < FIFO_DEPTH; i++) { buffer[i] = 0; }
         wr_tgt_skt.register_b_transport(this, &Fifo::b_transport_wr);
@@ -42,12 +43,12 @@ class Fifo : public sc_module
     }
 
     void method_main() {
-        if ((in + 1) % FIFO_DEPTH == out) {
+        if (/*(in + 1) % FIFO_DEPTH == out*/count == (FIFO_DEPTH -1)) {
             full.write(true);
         } else {
             full.write(false);
         }
-        if (in == out) {
+        if (/*in == out*/count == 0) {
             not_empty.write(false);
         } else {
             not_empty.write(true);
@@ -64,6 +65,7 @@ class Fifo : public sc_module
 
             buffer[in] = nextp;
             in = (in + 1) % FIFO_DEPTH;
+            count++;
             event_start.notify();
             wait(event_done);
             delay = sc_time(0, SC_NS);
@@ -83,7 +85,7 @@ class Fifo : public sc_module
             trans.set_data_ptr(data);
 
             out = (out + 1) % FIFO_DEPTH;
-            uint32_t tmp = out;
+            count--;
             event_start.notify();
             wait(event_done);
             delay = sc_time(0, SC_NS);
@@ -111,6 +113,7 @@ class Fifo : public sc_module
     // semaphore
     uint32_t in;
     uint32_t out;
+    uint32_t count;
     sc_event event_start;
     sc_event event_done;
 };
