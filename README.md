@@ -57,3 +57,5 @@ train usage of systemc tlm2
 ||notempty.wait|not_empty.write(false)|
 |signal|notfull.signal|full.write(false)|
 ||notempty.signal|not_empty.write(true)|
+
+12. implement a fifo in model, this fifo uses the concept of semaphore, 11_fifo the fifo is a model

@@ -41,20 +41,20 @@ class Top : public sc_module {
             buffer[in] = nextp;
             in = (in + 1) % FIFO_DEPTH;
             wait(clk_period_producer);
-            cout << name() << "@[" << sc_time_stamp() << "]: write 0x" << hex << nextp << endl;
+            cout << name() << ".producer@[" << sc_time_stamp() << "]: write 0x" << hex << nextp << endl;
             // m_signal(mutex);
             m_signal(full);
         }
     }
 
     void thread_consumer() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             m_wait(full, event_consumer);
             // m_wait(mutex, event_consumer);
             uint32_t nextc = buffer[out];
             out = (out + 1) % FIFO_DEPTH;
             wait(clk_period_consumer);
-            cout << name() << "@[" << sc_time_stamp() << "]: read 0x" << hex << nextc << endl;
+            cout << name() << ".consumer@[" << sc_time_stamp() << "]: read 0x" << hex << nextc << endl;
             // m_signal(mutex);
             m_signal(empty);
         }

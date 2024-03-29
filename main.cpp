@@ -1,5 +1,5 @@
 #include "systemc"
-#include "11_fifo/top.h"
+#include "12_fifo/top.h"
 
 using namespace std;
 
