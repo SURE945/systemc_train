@@ -43,7 +43,7 @@ train usage of systemc tlm2
     the most important 4 element for FSM is **state**, **event**, **action** and **transition**.
     reference doc is ARMv7-M Arichitecture Reference Manual PA3-72.
 
-11. implement a fifo model, the idea comes from lecture Operating System, this fifo model is like a monitor,
+11. implement a fifo model, the idea comes from lecture Operating System, this fifo model is like a monitor, **ps:** signal change frequently case like this, is not suitable for time decoupling, because every time signal change it should call break quantum in order to get the correct value in time.
 
 |Type|OS|FIFO model|
 |--|--|--|
