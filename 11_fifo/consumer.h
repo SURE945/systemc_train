@@ -20,18 +20,18 @@ class Consumer : public sc_module
     Consumer(sc_module_name name)
     : sc_module(name)
     , init_skt("socket")
-    , clk_period(3, SC_NS) {
+    , clk_period(5, SC_NS) {
         SC_THREAD(thread_main);
         sensitive << not_empty.pos();
     }
 
-    private:
     void thread_main() {
-        for (int i = 0; i < 10; i++) {
+        int i = 0;
+        while (i < 10) {
             wait(0, SC_NS);
-            bool b_not_empty = not_empty.read();
-            if (b_not_empty) {
+            if (not_empty.read()) {
                 read32(0x0, m_qk.get_local_time());
+                i++;
             } else {
                 wait();
             }

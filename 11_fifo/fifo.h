@@ -83,6 +83,7 @@ class Fifo : public sc_module
             trans.set_data_ptr(data);
 
             out = (out + 1) % FIFO_DEPTH;
+            uint32_t tmp = out;
             event_start.notify();
             wait(event_done);
             delay = sc_time(0, SC_NS);
@@ -98,6 +99,8 @@ class Fifo : public sc_module
     void end_of_elaboration() {
         sc_trace(my_trace_file, full, "full");
         sc_trace(my_trace_file, not_empty, "not_empty");
+        sc_trace(my_trace_file, in, "in");
+        sc_trace(my_trace_file, out, "out");
     }
 
     private:
