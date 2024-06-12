@@ -17,7 +17,7 @@ train usage of systemc tlm2
 8.  add ignorable extension in generic_payload, take AWCACHE or ARCACHE in AXI as example
 9.  create a class quantum_control to implement break quantum feature
 ```
-            my_processor    my_peripheral   
+            my_processor    my_peripheral
 0   ms|-------------------------------------
       |         |                  |
       |         V                  V
@@ -61,3 +61,8 @@ train usage of systemc tlm2
 12. implement a fifo in model, this fifo uses the concept of semaphore, 11_fifo the fifo is a model
 
 13. implement a round-robin arbiter, the core is a increasing pointer.
+
+14. thread reset feature, thread will restart if condition satisified
+
+    1. reset_signal_is(..,..) only valid at clk.pos() or clk.neg()
+    2. async_reset_signal_is(..,..) valid at any wait
