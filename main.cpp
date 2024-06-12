@@ -5,6 +5,6 @@ using namespace std;
 
 int sc_main(int argc, char* argv[]) {
     Top top("top");
-    sc_start(100, SC_NS);
+    sc_start();
     return 0;
 }

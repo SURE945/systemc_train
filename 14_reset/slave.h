@@ -30,6 +30,7 @@ class Slave : public sc_module
             data.write(index);
             index++;
             wait(10, SC_NS);
+            if (index > 5) sc_stop();
         }
     }
 };

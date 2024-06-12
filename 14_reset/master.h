@@ -34,7 +34,7 @@ class Master : public sc_module
     }
 
     void thread_main() {
-        wait(50, SC_NS);
+        wait(51, SC_NS);
         rst_n.write(false);
         wait(1, SC_NS);
         rst_n.write(true);
@@ -46,9 +46,9 @@ class Master : public sc_module
 
     private:
     void end_of_elaboration() {
-        sc_trace(my_trace_file, rst_n, "rst_n");
-        sc_trace(my_trace_file, data, "data");
-        sc_trace(my_trace_file, clk, "clk");
+        sc_trace(my_trace_file, rst_n, "master.rst_n");
+        sc_trace(my_trace_file, data, "master.data");
+        sc_trace(my_trace_file, clk, "master.clk");
         rst_n.write(true);
     }
 
