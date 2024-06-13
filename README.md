@@ -72,3 +72,8 @@ train usage of systemc tlm2
     1. inheritence base abstract class sc_interface to implement abstract template class liushuo_interface;
     2. inheritence liushuo_interface to implement channel model memory;
     3. implement a sc_module master to involve sc_port to link with liushuo_interface;
+
+16. self implement tlm2 b_transport
+
+    1. using sc_export, increase code readable;
+    2. add register callback function;

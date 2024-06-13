@@ -9,5 +9,6 @@ enable_testing()
 
 link_directories(~/lib/systemc-2.3.3/lib-linux64)
 include_directories(~/lib/systemc-2.3.3/include)
+include_directories(00_header)
 add_executable(main main.cpp)
 target_link_libraries(${PROJECT_NAME} -lsystemc)

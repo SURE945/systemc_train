@@ -1,5 +1,5 @@
 #include "systemc"
-#include "15_tlm/top.h"
+#include "16_tlm_export/top.h"
 
 using namespace std;
 
