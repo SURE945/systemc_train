@@ -66,3 +66,9 @@ train usage of systemc tlm2
 
     1. reset_signal_is(..,..) only valid at clk.pos() or clk.neg()
     2. async_reset_signal_is(..,..) valid at any wait
+
+15. self implement tlm model
+
+    1. inheritence base abstract class sc_interface to implement abstract template class liushuo_interface;
+    2. inheritence liushuo_interface to implement channel model memory;
+    3. implement a sc_module master to involve sc_port to link with liushuo_interface;
