@@ -1,7 +1,5 @@
 #include "systemc"
-#include "16_tlm_export/top.h"
-
-// test
+#include "17_mutex/top.h"
 
 using namespace std;
 

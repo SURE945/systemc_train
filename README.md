@@ -77,3 +77,5 @@ train usage of systemc tlm2
 
     1. using sc_export, increase code readable;
     2. add register callback function;
+
+17. sc_mutex, only support atomicity of operation, cannot ensure the sequence of operation, in other words cannot relaize the synchronous of operation.
