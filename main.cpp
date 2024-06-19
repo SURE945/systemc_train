@@ -1,5 +1,5 @@
 #include "systemc"
-#include "18_sync/top.h"
+#include "19_spmi/top.h"
 
 using namespace std;
 
