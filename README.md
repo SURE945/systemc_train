@@ -79,3 +79,5 @@ train usage of systemc tlm2
     2. add register callback function;
 
 17. sc_mutex, only support atomicity of operation, cannot ensure the sequence of operation, in other words cannot relaize the synchronous of operation.
+
+18. sync case, different master send data at the same time, how to execute in order and ensure the quantum of operation

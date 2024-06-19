@@ -1,5 +1,5 @@
 #include "systemc"
-#include "17_mutex/top.h"
+#include "18_sync/top.h"
 
 using namespace std;
 
