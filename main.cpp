@@ -1,5 +1,5 @@
 #include "systemc"
-#include "19_spmi/top.h"
+#include "20_custom_signal/top.h"
 
 using namespace std;
 
