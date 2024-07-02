@@ -85,3 +85,5 @@ train usage of systemc tlm2
 19. add single port multiple interface case
 
 20. add custom implement sc_signal case
+
+21. add tlm2 export implementation, in tlm2 no export, so combine a general target and a internal initiator as a export

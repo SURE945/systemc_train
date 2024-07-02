@@ -1,5 +1,5 @@
 #include "systemc"
-#include "20_custom_signal/top.h"
+#include "21_tlm2_export/top.h"
 
 using namespace std;
 
