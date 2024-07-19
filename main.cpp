@@ -1,5 +1,5 @@
 #include "systemc"
-#include "21_tlm2_export/top.h"
+#include "22_bus_noc/top.h"
 
 using namespace std;
 
