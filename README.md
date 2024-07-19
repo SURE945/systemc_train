@@ -87,3 +87,33 @@ train usage of systemc tlm2
 20. add custom implement sc_signal case
 
 21. add tlm2 export implementation, in tlm2 no export, so combine a general target and a internal initiator as a export
+
+22. compare between bus and noc, the difference is router logic, noc is in an ip but for bus is in master and slave.
+
+```
+|————————|
+|        |-bus.valid---------->|————————|
+|        |           |         |   bus  |
+|        |-bus.data--|-------->| slave0 |
+|        |           |  |      |        |
+|        |-bus.addr--|--|----->|————————|
+|        |           |  |  |
+|        |           |  |  |-->|————————|
+|        |           |  |      |   bus  |
+|        |           |  |----->| slave1 |
+|        |           |         |        |
+|        |           |-------->|————————|
+| master |
+|        |                     |————————|
+|        |         |—————|     |   NoC  |
+|        |         |     |---->| slave0 |
+|        |         |     |     |        |
+|        |         |     |     |————————|
+|        |-------->| NoC |
+|        |         |     |     |————————|
+|        |         |     |     |   NoC  |
+|        |         |     |---->| slave1 |
+|        |         |—————|     |        |
+|        |                     |————————|
+|————————|
+```
